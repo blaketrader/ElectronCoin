@@ -97,7 +97,8 @@ void Shutdown()
     RenameThread("bitcoin-shutoff");
     nTransactionsUpdated++;
     StopRPCThreads();
-    bitdb.Flush(false);
+	ShutdownRPCMining();
+	bitdb.Flush(false);
     StopNode();
     {
         LOCK(cs_main);
@@ -1083,6 +1084,7 @@ bool AppInit2(boost::thread_group& threadGroup)
 
     StartNode(threadGroup);
 
+	InitRPCMining();
     if (fServer)
         StartRPCThreads();
 
