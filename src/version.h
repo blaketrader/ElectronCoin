@@ -27,7 +27,7 @@ extern const std::string CLIENT_DATE;
 
 static const int PROTOCOL_VERSION = 70001;
 
-// earlier versions not supported as of Feb 2012, and are disconnected
+// to do at a future date -- for reward changes starting at block 1051200 we may have to cut older versions off
 static const int MIN_PROTO_VERSION = 209;
 
 // nTime field added to CAddress, starting with this version;
