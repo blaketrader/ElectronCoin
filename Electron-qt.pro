@@ -1,7 +1,7 @@
 TEMPLATE = app
 TARGET = electron-qt
 macx:TARGET = "Electron-Qt"
-VERSION = 0.8.9.3
+VERSION = 0.8.9.4
 INCLUDEPATH += src src/json src/qt
 QT += core gui network
 #DEFINES += QT_GUI BOOST_THREAD_USE_LIB BOOST_SPIRIT_THREADSAFE BOOST_THREAD_PROVIDES_GENERIC_SHARED_MUTEX_ON_WIN __NO_SYSTEM_INCLUDES
@@ -37,7 +37,7 @@ MINIUPNPC_INCLUDE_PATH=C:/deps/miniupnpc
 MINIUPNPC_LIB_PATH=C:/deps/miniupnpc
 QRENCODE_INCLUDE_PATH=C:/deps/qrencode-3.4.4
 QRENCODE_LIB_PATH=C:/deps/qrencode-3.4.4/.libs
-LIBPNG_INCLUDE_PATH=C:/deps/libpng-1.6.12
+LIBPNG_INCLUDE_PATH=C:/deps/libpng-1.6.14
 # End of Windows Paths
 
 OBJECTS_DIR = build
@@ -70,13 +70,11 @@ contains(RELEASE, 1) {
 #QMAKE_CXXFLAGS *= -D_FORTIFY_SOURCE=2
 QMAKE_CXXFLAGS += -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
 # for extra security on Windows: enable ASLR and DEP via GCC linker flags
-#win32:QMAKE_LFLAGS *= -Wl,--dynamicbase -Wl,--nxcompat
+win32:QMAKE_LFLAGS *= -Wl,--dynamicbase -Wl,--nxcompat
 # on Windows: enable GCC large address aware linker flag
-#win32:QMAKE_LFLAGS *= -Wl,--large-address-aware
-#win32:QMAKE_LFLAGS *= -Wl,--large-address-aware -static
+win32:QMAKE_LFLAGS *= -Wl,--large-address-aware -static
 # i686-w64-mingw32
-#win32:QMAKE_LFLAGS *= -static-libgcc -static-libstdc++ -static
-win32:QMAKE_LFLAGS *= -static-libgcc -static-libstdc++
+win32:QMAKE_LFLAGS *= -static-libgcc -static-libstdc++ -static
 
 # use: qmake "USE_QRCODE=1"
 # libqrencode (http://fukuchi.org/works/qrencode/index.en.html) must be installed for support
@@ -158,6 +156,8 @@ QMAKE_CLEAN += $$PWD/src/leveldb/libleveldb.a; cd $$PWD/src/leveldb ; $(MAKE) cl
 }
 
 QMAKE_CXXFLAGS_WARN_ON = -fdiagnostics-show-option -Wall -Wextra -Wformat -Wformat-security -Wno-unused-parameter -Wstack-protector
+
+macx:QMAKE_CXXFLAGS_WARN_ON += -Wno-deprecated
 
 # Input
 DEPENDPATH += src src/json src/qt
