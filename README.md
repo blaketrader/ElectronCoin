@@ -34,7 +34,8 @@ What is Electron?
 
 Goal of the coin is to allow faster transactions.  
 Block reward is 20 coins per block for the first 525,600 blocks (~1 year),
-After that 10 coins per block with no further reduction of block reward
+After that 10 coins per block for the second year then after 5 coins per block
+with no further reduction of block reward.
 Cap in place to reduce the difficulty jumps upwards
 Block target time is 60 seconds and retargets every 30 blocks
 Total of 7 Billion coins
