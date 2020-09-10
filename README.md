@@ -41,9 +41,22 @@ Block target time is 60 seconds and retargets every 30 blocks
 Total of 7 Billion coins
 Block maturity 460 (+20 buffer, 480 total)
 
-Ubuntu 12.04 dependancies that are used on the Linux build machine:
+Ubuntu 20.04 dependancies that are used on the Linux build machine:
 
-git-core build-essential libssl-dev libboost-all-dev libdb5.1-dev libdb5.1++-dev libgtk2.0-dev libminiupnpc-dev qt4-qmake mingw32 synaptic qt-sdk qt4-dev-tools libqt4-dev libqt4-core libqt4-gui libdb++-dev
+git software-properties-common libqt4* libqtcore4 libqtgui4 libqtwebkit4 qt4* libqt4-dev libminiupnpc-dev mingw-w64 build-essential libboost-dev libssl1.0-dev libdb-dev libdb++-dev openssl-1.0.2o
+
+To install all dependencies automatically, just run "$ sudo bash script.sh"
+
+Running electrond:
+In 'Electron-ELT/src' folder, just run:
+$ make -f makefile.unix
+$ ./electrond --daemon
+
+Running electron-qt: 
+In 'Electron-ELT' folder, just run:
+$ qmake 
+$ make
+$ sudo QT_X11_NO_MITSHM=1 ./electron-qt 
 
 License
 
