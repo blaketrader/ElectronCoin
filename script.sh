@@ -71,16 +71,9 @@ _add_packages() {
 
 	echo "Installing libssl-dev"
 
-	cat /etc/apt/sources.list | grep "deb http://security.ubuntu.com/ubuntu bionic-security main" &> /dev/null
+	apt-get install -y libssl-dev &> /dev/null 
 
-	if [[ $? -ne 0 ]]; then
-		echo "deb http://security.ubuntu.com/ubuntu bionic-security main" >> /etc/apt/sources.list
-		apt-get update &> /dev/null
-	fi
-
-	apt-get install -y libssl1.0-dev &> /dev/null 
-
-	_verify $? "libssl1.0-dev"
+	_verify $? "libssl1.1-dev"
 
 	echo "Installing libdb"
 
@@ -98,40 +91,6 @@ _add_packages() {
 
 _prepare_electron() {
 	_add_packages
-
-	cd ~/
-
-	if [[ ! -d ~/Electron-ELT ]]; then
-		echo "Cloning Electron Repository"
-		git clone https://github.com/blaketrader/Electron-ELT.git
-	fi
-
-	cd Electron-ELT
-
-	openssl version -v | grep "1.0.2o" &> /dev/null
-	
-	if [[ $? -ne 0 ]]; then
-		echo "Installing openssl 1.0.2o"
-
-		cd /tmp/
-
-		wget https://www.openssl.org/source/openssl-1.0.2o.tar.gz --no-check-certificate &> /dev/null
-
-		tar -xf openssl-1.0.2o.tar.gz
-
-		cd openssl-1.0.2o
-
-		./config  &> /dev/null
-		
-		make install &> /dev/null
-
-		_verify $? "openssl 1.0.2o"
-
-		cd ~/Electron-ELT/
-	fi
-
-	cd src
-
 }
 
 _prepare_electron

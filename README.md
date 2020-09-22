@@ -43,20 +43,20 @@ Block maturity 460 (+20 buffer, 480 total)
 
 Ubuntu 20.04 dependancies that are used on the Linux build machine:
 
-git software-properties-common libqt4* libqtcore4 libqtgui4 libqtwebkit4 qt4* libqt4-dev libminiupnpc-dev mingw-w64 build-essential libboost-dev libssl1.0-dev libdb-dev libdb++-dev openssl-1.0.2o
+git software-properties-common libqt4* libqtcore4 libqtgui4 libqtwebkit4 qt4* libqt4-dev libminiupnpc-dev mingw-w64 build-essential libboost-dev libssl-dev libdb-dev libdb++-dev openssl-1.1.1.g
 
-To install all dependencies automatically, just run "$ sudo bash script.sh"
+To install all dependencies automatically, just run `sudo bash script.sh`
 
 Running electrond:
 In 'Electron-ELT/src' folder, just run:
-$ make -f makefile.unix
-$ ./electrond --daemon
+`make -f makefile.unix`
+`./electrond --daemon`
 
 Running electron-qt: 
 In 'Electron-ELT' folder, just run:
-$ qmake 
-$ make
-$ sudo QT_X11_NO_MITSHM=1 ./electron-qt 
+`qmake`
+`make`
+`sudo QT_X11_NO_MITSHM=1 ./electron-qt`
 
 License
 
